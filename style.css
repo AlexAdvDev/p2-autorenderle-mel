@@ -1,0 +1,14 @@
+body {
+	display: flex;
+	justify-content: center;
+    align-items: center;
+	background: #121212;
+	color: #f8f8f8;
+    height: 100vh;
+}
+
+#big-text {
+    display: flex;
+    font-family: 'Barlow', sans-serif;
+    font-size: 5vw;
+}
