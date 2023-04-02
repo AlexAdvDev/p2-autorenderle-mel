@@ -7,8 +7,11 @@ body {
     height: 100vh;
 }
 
-#big-text {
-    display: flex;
-    font-family: 'Barlow', sans-serif;
-    font-size: 5vw;
+#videoPlayer {
+	margin-top: 50px;
+	margin-bottom: 30px;
+	width: 64vw;
+	height: 36vw;
+	background: #555;
+    border-radius: 5px;
 }
