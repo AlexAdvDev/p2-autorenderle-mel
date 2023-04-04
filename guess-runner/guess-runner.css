@@ -1,13 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@500;700;800&display=swap');
 
 body {
-	display: flex;
-	justify-content: center;
-    align-items: center;
 	background: #121212;
 	color: #f8f8f8;
     height: 100vh;
     font-family: 'Barlow', sans-serif;
+
+    display: flex;
+	justify-content: center;
+    align-items: center;
+}
+
+.game-container {
+    display: flex;
+    flex-direction: column;
+	justify-content: center;
+    align-items: center;
 }
 
 .video-player {

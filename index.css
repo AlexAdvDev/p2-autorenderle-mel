@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@500;700;800&display=swap');
 
+
 body {
 	background: #121212;
 	color: #f8f8f8;
@@ -7,15 +8,16 @@ body {
     font-family: 'Barlow', sans-serif;
 
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
 }
 
 .gamemode-buttons {
+    height: fit-content;
+    width: fit-content;
+
     display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
 }
 
@@ -44,11 +46,12 @@ body {
 .gamemode-button {
     font-size: 2rem;
     color: #ffffff;
+
     border-radius: 5px;
     height: 4rem;
     width: 12em;
-    margin-top: 5px;
-    margin-bottom: 5px;
+    margin: 0.1em;
+
     animation: submit-out 0.1s forwards linear;
 }
 

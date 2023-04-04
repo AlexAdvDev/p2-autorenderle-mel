@@ -1,20 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@500;700;800&display=swap');
 
 body {
-	display: flex;
-	justify-content: center;
-    align-items: center;
 	background: #121212;
-	color: #f8f8f8;
-    height: 100vh;
+    color: #ffffff;
     font-family: 'Barlow', sans-serif;
 }
 
+.app-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 #videoPlayer {
+    width: 48vw;
+	height: 27vw;
 	margin-top: 25px;
 	margin-bottom: 25px;
-	width: 48vw;
-	height: 27vw;
 	background: #121212;
     border-radius: 5px;
 }
