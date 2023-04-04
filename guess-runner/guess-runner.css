@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@500;700;800&display=swap');
+
+body {
+	display: flex;
+	justify-content: center;
+    align-items: center;
+	background: #121212;
+	color: #f8f8f8;
+    height: 100vh;
+    font-family: 'Barlow', sans-serif;
+}
+
+.video-player {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+	width: 48vw;
+	height: 27vw;
+	background: #121212;
+    border-radius: 5px;
+}
+
+.rank-input-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.rank-guess {
+    font-size: 1.5rem;
+    border: 1px solid #ffffff;
+    border-radius: 5px;
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+    height: inherit;
+    width: 8em;
+}
+
+@keyframes submit-in {
+    0% {
+        background-color: #0072EF;
+        border: 1px solid #0072EF;
+    }
+    100% {
+        background-color: #0055b1;
+        border: 1px solid #0055b1;
+    }
+}
+
+@keyframes submit-out {
+    0% {
+        background-color: #0055b1;
+        border: 1px solid #0055b1;
+    }
+    100% {
+        background-color: #0072EF;
+        border: 1px solid #0072EF;
+    }
+}
+
+.whorun-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.runner-answer {
+    font-size: 2rem;
+    color: #ffffff;
+    border-radius: 5px;
+    height: inherit;
+    width: 8em;
+    animation: submit-out 0.1s forwards linear;
+    margin: 5px;
+}
+
+.runner-answer:hover {
+    animation: submit-in 0.1s forwards linear;
+    cursor: pointer;
+}

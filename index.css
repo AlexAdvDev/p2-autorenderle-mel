@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@500;700;800&display=swap');
+
+body {
+	background: #121212;
+	color: #f8f8f8;
+    height: 100vh;
+    font-family: 'Barlow', sans-serif;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.gamemode-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+@keyframes submit-in {
+    0% {
+        background-color: #0072EF;
+        border: 1px solid #0072EF;
+    }
+    100% {
+        background-color: #0055b1;
+        border: 1px solid #0055b1;
+    }
+}
+
+@keyframes submit-out {
+    0% {
+        background-color: #0055b1;
+        border: 1px solid #0055b1;
+    }
+    100% {
+        background-color: #0072EF;
+        border: 1px solid #0072EF;
+    }
+}
+
+.gamemode-button {
+    font-size: 2rem;
+    color: #ffffff;
+    border-radius: 5px;
+    height: 4rem;
+    width: 12em;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    animation: submit-out 0.1s forwards linear;
+}
+
+.gamemode-button:hover {
+    animation: submit-in 0.1s forwards linear;
+    cursor: pointer;
+}

@@ -2,21 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Portal 2 Autorenderle</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Portal 2 Autorenderle Homepage</title>
+    <link rel="stylesheet" href="index.css">
 </head>
+<header>
+    <h1>Portal 2 Autorenderle</h1>
+</header>
 <body>
-    <div class="app-container">
-        <video id="videoPlayer" controls autoplay></video>
-        <div class="rank-input-container">
-            <input type="text" class="rank-guess" id="rank-guess" placeholder="Guess run rank...">
-            <button class="rank-submit" onclick="rankSubmitGuess()">Submit</button>
-        </div>
+    <div class="gamemode-buttons">
+        <button class="gamemode-button" onclick="window.location.href='guess-rank/guess-rank.html'">Guess The Rank</button>
+        <button class="gamemode-button" onclick="window.location.href='guess-runner/guess-runner.html'">Guess The Runner</button>
     </div>
-
-    <!-- Link JS Files -->
-    <script src="maplist.js"></script>
-    <script src="jquery-3.6.4.min.js"></script>
     <script src="index.js"></script>
 </body>
 </html>

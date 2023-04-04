@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Guess the Rank</title>
+    <link rel="stylesheet" href="guess-rank.css">
+</head>
+<body>
+    <div class="app-container">
+        <div class="game-container">
+            <video id="videoPlayer" controls autoplay></video>
+            <div class="rank-input-container">
+                <input type="text" class="rank-guess" id="rank-guess" placeholder="Guess run rank...">
+                <button class="rank-submit" onclick="rankSubmitGuess()">Submit</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Link JS Files -->
+    <script src="../common/maplist.js"></script>
+    <script src="../common/jquery-3.6.4.min.js"></script>
+    <script src="guess-rank.js"></script>
+</body>
+</html>

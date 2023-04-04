@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Guess the Runner</title>
+    <link rel="stylesheet" href="guess-runner.css">
+</head>
+<body>
+    <div class="app-container">
+        <div class="game-container">
+            <video class="video-player" id="player" controls autoplay></video>
+            <div class="runner-input-container">
+                <h1 class="whorun-text">Who's run is this?</h1>
+                <button class="runner-answer" id="ans1" onclick="runnerGuess1()"></button>
+                <button class="runner-answer" id="ans2" onclick="runnerGuess2()"></button>
+                <button class="runner-answer" id="ans3" onclick="runnerGuess3()"></button>
+                <button class="runner-answer" id="ans4" onclick="runnerGuess4()"></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Link JS Files -->
+    <script src="../common/maplist.js"></script>
+    <script src="../common/jquery-3.6.4.min.js"></script>
+    <script src="guess-runner.js"></script>
+</body>
+</html>
