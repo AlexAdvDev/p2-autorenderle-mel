@@ -79,7 +79,7 @@ $(document).ready(function() {
 function runnerGuess(input) {
 console.log("Input: " + input + " | Correct answer: " + correctAnswer);
     if(input === correctAnswer) {
-        if(confirm("You guessed correct!")) {
+        if(confirm("You guessed correct! it was " + correctName + "!")) {
             window.location.reload();
         }
     } else {
