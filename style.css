@@ -19,7 +19,7 @@ body {
     border-radius: 5px;
 }
 
-.input-container {
+.rank-input-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -27,7 +27,7 @@ body {
     margin-right: auto;
 }
 
-.input {
+.rank-guess {
     font-size: 1.5rem;
     border: 1px solid #ffffff;
     border-radius: 5px;
@@ -59,7 +59,7 @@ body {
     }
 }
 
-.submit {
+.rank-submit {
     font-size: 1.5rem;
     color: #ffffff;
     border-radius: 5px;
@@ -70,7 +70,7 @@ body {
     animation: submit-out 0.1s forwards linear;
 }
 
-.submit:hover {
+.rank-submit:hover {
     animation: submit-in 0.1s forwards linear;
     cursor: pointer;
 }

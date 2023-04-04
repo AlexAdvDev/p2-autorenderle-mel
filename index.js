@@ -16,7 +16,7 @@ $(document).ready(function() {
         boardJson = data;
         console.log(boardJson);
     }).then(function() {
-        function generateRunID() {
+        function rankGenerateRunID() {
             // Generate a random rank between 1 and 200 (slightly broken)
             randomRank = Math.floor(Math.random() * 200) + 1;
             trueRank = randomRank +1 ;
@@ -29,12 +29,12 @@ $(document).ready(function() {
             // Check if the run ID has a valid demo (and autorender)
             if(boardJson[Object.keys(boardJson)[randomRank]].scoreData.hasDemo == 0) {
                 console.error("Run ID has no autorender, generating new run ID");
-                generateRunID();
+                rankGenerateRunID();
             }
         }
 
         // Generate the run ID
-        generateRunID();
+        rankGenerateRunID();
 
         // Display autorender
         var videoPlayer = document.getElementById("videoPlayer");
@@ -43,26 +43,20 @@ $(document).ready(function() {
 });
 
 // Submitted Guess function
-var submitText = document.getElementById("rankGuess");
-submitText.onkeyup = function(e) {
-    if(e.keyCode == 13){
-       submitGuess();
-    }
-}
-function submitGuess() {
-    var guess = submitText.value;
-    console.log("Guess: " + guess);
-
+function rankSubmitGuess() {
+    var submitText = document.getElementById("rank-guess").value;
+    console.log("Guess: " + submitText);
+    
     // Check if guess is correct by margins
-    if(guess == trueRank) {
+    if(submitText == trueRank) {
         if(confirm("You guessed exactly right!" + " ran by " + boardJson[Object.keys(boardJson)[randomRank]].userData.boardname)) {
             window.location.reload();
         }
-    } else if(trueRank - 10 < guess && guess < trueRank + 10) {
+    } else if(trueRank - 10 < submitText && submitText < trueRank + 10) {
         if(confirm("You guessed within 10 ranks! The correct answer was " + trueRank + " ran by " + boardJson[Object.keys(boardJson)[randomRank]].userData.boardname)) {
             window.location.reload();
         }
-    } else if(trueRank - 20 < guess && guess < trueRank + 20) {
+    } else if(trueRank - 20 < submitText && submitText < trueRank + 20) {
         if(confirm("You guessed within 20 ranks! The correct answer was " + trueRank + " ran by " + boardJson[Object.keys(boardJson)[randomRank]].userData.boardname)) {
             window.location.reload();
         }
