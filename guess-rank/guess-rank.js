@@ -5,10 +5,17 @@ var boardJson = null;
 var randomRank = null;
 var runID = null;
 var trueRank = null;
+var filterMode = 0;
 
 function reset() {
     // Get a random map ID from maplist.js
-    var randomMap = Math.floor(Math.random() * 108) + 1;
+    if(filterMode == 0) {
+        var randomMap = Math.floor(Math.random() * 108) + 1;
+    } else if(filterMode == 1) {
+        var randomMap = Math.floor(Math.random() * 60) + 1;
+    } else if(filterMode == 2) {
+        var randomMap = Math.floor(Math.random() * 48) + 61;
+    }
     var mapID = mapsJson[randomMap - 1].mapid;
 
     // Get the boards JSON
@@ -49,7 +56,7 @@ function reset() {
 
 // Start the loop initially
 reset();
-document.getElementById("streak-text").innerHTML = "Streak (off by <10): 0";
+document.getElementById("streak-text").innerHTML = "Streak: 0";
 document.getElementById("highstreak-text").innerHTML = "High-score streak: 0";
 
 // Submitted Guess function
@@ -67,7 +74,7 @@ function rankSubmitGuess() {
                 localStorage.setItem("rank-highscore", highscore);
                 document.getElementById("highstreak-text").innerHTML = "High-score streak: " + highscore;
             }
-            document.getElementById("streak-text").innerHTML = "Streak (off by <10): " + rankStreak;
+            document.getElementById("streak-text").innerHTML = "Streak: " + rankStreak;
             reset();
         }
     } else if(trueRank - 10 <= submitText.value && submitText.value <= trueRank + 10) {
@@ -78,20 +85,46 @@ function rankSubmitGuess() {
                 localStorage.setItem("rank-highscore", highscore);
                 document.getElementById("highstreak-text").innerHTML = "High-score streak: " + highscore;
             }
-            document.getElementById("streak-text").innerHTML = "Streak (off by <10): " + streak;
+            document.getElementById("streak-text").innerHTML = "Streak: " + streak;
             reset();
         }
     } else if(trueRank - 20 <= submitText.value && submitText.value <= trueRank + 20) {
         if(confirm("You guessed within 20 ranks! The correct answer was " + trueRank + " ran by " + boardJson[Object.keys(boardJson)[randomRank]].userData.boardname)) {
             rankStreak = 0;
-            document.getElementById("streak-text").innerHTML = "Streak (off by <10): " + rankStreak;
+            document.getElementById("streak-text").innerHTML = "Streak: " + rankStreak;
             reset();
         }
     } else {
         if(confirm("You guessed wrong! The correct answer was " + trueRank + " ran by " + boardJson[Object.keys(boardJson)[randomRank]].userData.boardname)) {
             rankStreak = 0;
-            document.getElementById("streak-text").innerHTML = "Streak (off by <10): " + rankStreak;
+            document.getElementById("streak-text").innerHTML = "Streak: " + rankStreak;
             reset();
         }
+    }
+}
+
+// Info page stuff
+function openCloseInfo() {
+    document.querySelector(".info-container").classList.toggle("hidden");
+}
+
+// Change filter
+function changeFilter(filter) {
+    if(filter == "all") {
+        rankStreak = 0;
+        filterMode = 0;
+        document.getElementById("streak-text").innerHTML = "Streak: " + rankStreak;
+        reset();
+    } else if(filter == "sp") {
+        rankStreak = 0;
+        filterMode = 1;
+        document.getElementById("streak-text").innerHTML = "Streak: " + rankStreak;
+        reset();
+    }
+    else if(filter == "coop") {
+        rankStreak = 0;
+        filterMode = 2;
+        document.getElementById("streak-text").innerHTML = "Streak: " + rankStreak;
+        reset();
     }
 }

@@ -1,5 +1,34 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@500;700;800&display=swap');
 
+.hidden {
+    opacity: 0;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: calc(100% - 25px);
+    height: 50px;
+    margin: 0 10px 0 10px;
+    border-bottom: #cccccc 1px solid;
+    color: #ffffff;
+    line-height: 5%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.icon {
+    filter: invert(99%) sepia(0%) saturate(0%) hue-rotate(155deg) brightness(105%) contrast(100%);
+    height: 30px;
+}
+
+.icon:hover {
+    cursor: pointer;
+}
+
 body {
 	background: #121212;
     color: #ffffff;
@@ -11,11 +40,61 @@ body {
     align-items: center;
 }
 
+.app-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 0 10px 0 10px;
+}
+
+.info-container {
+    align-self: center;
+
+    background: rgba(0,0,0,.95);
+    border: solid;
+    border-color: #0072EF;
+    border-radius: 5px;
+    border-width: 3px;
+    color: #fff;
+
+    font-size: large;
+    line-height: 1.5rem;
+    margin: auto;
+    min-height: 21rem;
+    overflow-y: auto;
+    padding: 1em;
+
+    position: absolute;
+    height: 25rem;
+    width: 27rem;
+    z-index: 5;
+
+    transition: opacity 0.1s;
+}
+
+.exit {
+    filter: invert(99%) sepia(0%) saturate(0%) hue-rotate(155deg) brightness(105%) contrast(100%);
+    height: 40px;
+    
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 1em;
+}
+
+.exit:hover {
+    cursor: pointer;
+}
+
 .game-container {
     display: flex;
     flex-direction: column;
 	justify-content: center;
     align-items: center;
+    z-index: 1;
 }
 
 #videoPlayer {
@@ -47,25 +126,12 @@ body {
 }
 
 @keyframes submit-in {
-    0% {
-        background-color: #0072EF;
-        border: 1px solid #0072EF;
-    }
-    100% {
-        background-color: #0055b1;
-        border: 1px solid #0055b1;
-    }
+    0% { background-color: #0072EF; border: 1px solid #0072EF; }
+    100% { background-color: #0055b1; border: 1px solid #0055b1; }
 }
-
 @keyframes submit-out {
-    0% {
-        background-color: #0055b1;
-        border: 1px solid #0055b1;
-    }
-    100% {
-        background-color: #0072EF;
-        border: 1px solid #0072EF;
-    }
+    0% { background-color: #0055b1; border: 1px solid #0055b1; }
+    100% { background-color: #0072EF; border: 1px solid #0072EF; }
 }
 
 .rank-submit {
@@ -82,4 +148,32 @@ body {
 .rank-submit:hover {
     animation: submit-in 0.1s forwards linear;
     cursor: pointer;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: calc(100% - 25px);
+    height: 50px;
+    margin: 0 10px 0 10px;
+    border-top: #ffffff 1px solid;
+
+    line-height: 5%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-right {
+    text-align: right;
+}
+
+a:link {
+    color: #0072EF;
+}
+
+a:visited {
+    color: #0055b1;
 }
