@@ -53,7 +53,7 @@ body {
 .info-container {
     align-self: center;
 
-    background: rgba(0,0,0,.9);
+    background: rgba(0,0,0,.95);
     border: solid;
     border-color: #0072EF;
     border-radius: 5px;
