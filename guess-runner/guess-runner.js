@@ -1,10 +1,6 @@
 const apiBase = "https://autorender.portal2.sr/api/v1";
 const boardsBase = "https://board.portal2.sr";
 
-// Get a random map ID from maplist.js
-var randomMap = Math.floor(Math.random() * 60) + 1;
-var mapID = mapsJson[randomMap - 1].mapid;
-
 var boardJson = null;
 var randomRank = null;
 var runID = null;
@@ -13,6 +9,10 @@ var correctAnswer = null;
 var correctName = null;
 
 function reset() {
+    // Get a random map ID from maplist.js
+    var randomMap = Math.floor(Math.random() * 60) + 1;
+    var mapID = mapsJson[randomMap - 1].mapid;
+    
     // Get the boards JSON
     $.getJSON(boardsBase + "/chamber/" + mapID + "/json", function(data) {
         boardJson = data;
@@ -71,13 +71,19 @@ function reset() {
 // Start the loop initially
 reset();
 document.getElementById("streak-text").innerHTML = "Streak: 0";
+document.getElementById("highstreak-text").innerHTML = "High-score streak: 0";
 
 // Handle runner guesses
 var streak = 0;
+var highscore = 0;
 function runnerGuess(input) {
         if(input === correctAnswer) {
             if(confirm("You guessed correct! it was " + correctName + "!")) {
                 streak++;
+                if(streak > highscore) {
+                    highscore = streak;
+                    document.getElementById("highstreak-text").innerHTML = "High-score streak: " + highscore;
+                }
                 document.getElementById("streak-text").innerHTML = "Streak: " + streak;
                 reset();
             }

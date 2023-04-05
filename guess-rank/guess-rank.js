@@ -1,16 +1,16 @@
 const apiBase = "https://autorender.portal2.sr/api/v1";
 const boardsBase = "https://board.portal2.sr";
 
-// Get a random map ID from maplist.js
-var randomMap = Math.floor(Math.random() * 60) + 1;
-var mapID = mapsJson[randomMap - 1].mapid;
-
 var boardJson = null;
 var randomRank = null;
 var runID = null;
 var trueRank = null;
 
 function reset() {
+    // Get a random map ID from maplist.js
+    var randomMap = Math.floor(Math.random() * 60) + 1;
+    var mapID = mapsJson[randomMap - 1].mapid;
+
     // Get the boards JSON
     $.getJSON(boardsBase + "/chamber/" + mapID + "/json", function(data) {
         boardJson = data;
@@ -44,21 +44,31 @@ function reset() {
 // Start the loop initially
 reset();
 document.getElementById("streak-text").innerHTML = "Streak (off by <10): 0";
+document.getElementById("highstreak-text").innerHTML = "High-score streak: 0";
 
 // Submitted Guess function
 var streak = 0;
+var highscore = 0;
 function rankSubmitGuess() {
     var submitText = document.getElementById("rank-guess");
     // Check if guess is correct by margins
     if(submitText.value == trueRank) {
         if(confirm("You guessed exactly right!" + " ran by " + boardJson[Object.keys(boardJson)[randomRank]].userData.boardname)) {
             streak++;
+            if(streak > highscore) {
+                highscore = streak;
+                document.getElementById("highstreak-text").innerHTML = "High-score streak: " + highscore;
+            }
             document.getElementById("streak-text").innerHTML = "Streak (off by <10): " + streak;
             reset();
         }
     } else if(trueRank - 10 < submitText.value && submitText.value < trueRank + 10) {
         if(confirm("You guessed within 10 ranks! The correct answer was " + trueRank + " ran by " + boardJson[Object.keys(boardJson)[randomRank]].userData.boardname)) {
             streak++;
+            if(streak > highscore) {
+                highscore = streak;
+                document.getElementById("highstreak-text").innerHTML = "High-score streak: " + highscore;
+            }
             document.getElementById("streak-text").innerHTML = "Streak (off by <10): " + streak;
             reset();
         }
