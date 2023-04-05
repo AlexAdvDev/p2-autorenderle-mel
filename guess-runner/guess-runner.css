@@ -89,3 +89,31 @@ body {
     animation: submit-in 0.1s forwards linear;
     cursor: pointer;
 }
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: calc(100% - 25px);
+    height: 50px;
+    margin: 0 10px 0 10px;
+    border-top: #ffffff 1px solid;
+
+    line-height: 5%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-right {
+    text-align: right;
+}
+
+a:link {
+    color: #0072EF;
+}
+
+a:visited {
+    color: #0055b1;
+}
