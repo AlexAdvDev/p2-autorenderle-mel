@@ -13,3 +13,10 @@ Streaks are based on how far you are from the correct answer. If you are less th
 
 ### Guess the Runner
 In this gamemode, you are given a video of a top 40 run on a map and the choice of four runners. Use movement techniques and routes to determine whose run the video belongs to. Streaks are based off guessing the correct answer.
+
+## TODO
+- More gamemodes! (DM Jaio#7900 or create an issue to suggest one)
+- fix ur css loser
+- Info/how to play popup screens
+- proper correct/incorrect popups instead of just alerts
+- Fix runs that don't have an autorender breaking things
