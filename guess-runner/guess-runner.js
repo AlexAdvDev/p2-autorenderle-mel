@@ -51,7 +51,7 @@ function reset() {
             names.shift();
             // Add names of the other top 40 runners, but skip over the name just added
             for (var i = 0; i < 40; i++) {
-                if (i != randomRank) {
+                if (i != randomRank && boardJson[Object.keys(boardJson)[randomRank]].scoreData.hasDemo == 1) {
                     names.push(boardJson[Object.keys(boardJson)[i]].userData.boardname);
                 }
             }
