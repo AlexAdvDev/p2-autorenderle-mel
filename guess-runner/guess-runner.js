@@ -23,6 +23,13 @@ function reset() {
             trueRank = randomRank +1 ;
             // Get the run ID from boards api
             runID = boardJson[Object.keys(boardJson)[randomRank]].scoreData.changelogId;
+            var previousRunID = null;
+            if(previousRunID == runID) {
+                console.error("Duplicate run, generating new run ID");
+                rankGenerateRunID();
+            }
+            previousRunID = runID;
+            
             // Check if the run ID has a valid demo
             if(boardJson[Object.keys(boardJson)[randomRank]].scoreData.hasDemo == 0) {
                 console.error("Run ID has no demo, generating new run ID");
