@@ -84,27 +84,29 @@ function reset() {
 
 // Start the loop initially
 reset();
-document.getElementById("streak-text").innerHTML = "Streak: 0";
-document.getElementById("highstreak-text").innerHTML = "High-score streak: 0";
 
 // Handle runner guesses
-var streak = 0;
-var highscore = 0;
+var runnerStreak = 0;
+var highscore = localStorage.getItem("runner-highscore") || 0;
+document.getElementById("streak-text").innerHTML = "Streak: " + runnerStreak;
+document.getElementById("highstreak-text").innerHTML = "High-score streak: " + highscore;
+
 function runnerGuess(input) {
         if(input === correctAnswer) {
             if(confirm("You guessed correct! it was " + correctName + "!")) {
-                streak++;
-                if(streak > highscore) {
-                    highscore = streak;
+                runnerStreak++;
+                if(runnerStreak > highscore) {
+                    highscore = runnerStreak;
+                    localStorage.setItem("runner-highscore", highscore);
                     document.getElementById("highstreak-text").innerHTML = "High-score streak: " + highscore;
                 }
-                document.getElementById("streak-text").innerHTML = "Streak: " + streak;
+                document.getElementById("streak-text").innerHTML = "Streak: " + runnerStreak;
                 reset();
             }
         } else {
             if(confirm("You guessed wrong! The correct answer was " + correctName + ".")) {
-                streak = 0;
-                document.getElementById("streak-text").innerHTML = "Streak: " + streak;
+                runnerStreak = 0;
+                document.getElementById("streak-text").innerHTML = "Streak: " + runnerStreak;
                 reset();
             }
         }
