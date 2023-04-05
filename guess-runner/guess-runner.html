@@ -36,9 +36,17 @@
                 <label for="coop">Only Co-op</label>
             </div>
         </div>
+        <div class="endgame-container hidden" id="endgame-container">
+            <h2 id="game-output"></h2>
+            <ul>
+                <li id="gameoutput-1">This run is rank XX on the leaderboards</li>
+                <li id="gameoutput-2">You've made a guess in XX.X seconds!</li>
+                <li id="gameoutput-3">Current streak: XX</li>
+                <li id="gameoutput-4">High-score streak: XX</li>
+            </ul>
+            <button class="play-again" onclick="playAgain()">Play Again</button>
+        </div>
         <div class="game-container">
-            <h2 id="streak-text"></h2>
-            <h3 id="highstreak-text"></h3>
             <video class="video-player" id="player" controls autoplay></video>
             <div class="runner-input-container">
                 <h1 id="whorun-text">Whose run is this?</h1>

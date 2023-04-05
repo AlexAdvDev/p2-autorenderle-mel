@@ -86,6 +86,15 @@ function reset() {
         // Display autorender
         var player = document.getElementById("player");
         player.src = apiBase + "/video/" + runID + "/video";
+
+        // Reset timer
+        clearInterval(Interval);
+        tens = "00";
+        seconds = "00";
+
+        // Start timer
+        clearInterval(Interval);
+        Interval = setInterval(startTimer, 10);
     });
 }
 
@@ -95,33 +104,50 @@ reset();
 // Handle runner guesses
 var runnerStreak = 0;
 var highscore = localStorage.getItem("runner-highscore") || 0;
-document.getElementById("streak-text").innerHTML = "Streak: " + runnerStreak;
-document.getElementById("highstreak-text").innerHTML = "High-score streak: " + highscore;
 
-function runnerGuess(input) {
-        if(input === correctAnswer) {
-            if(confirm("You guessed correct! it was " + correctName + "!")) {
-                runnerStreak++;
-                if(runnerStreak > highscore) {
-                    highscore = runnerStreak;
-                    localStorage.setItem("runner-highscore", highscore);
-                    document.getElementById("highstreak-text").innerHTML = "High-score streak: " + highscore;
-                }
-                document.getElementById("streak-text").innerHTML = "Streak: " + runnerStreak;
-                reset();
-            }
-        } else {
-            if(confirm("You guessed wrong! The correct answer was " + correctName + ".")) {
-                runnerStreak = 0;
-                document.getElementById("streak-text").innerHTML = "Streak: " + runnerStreak;
-                reset();
-            }
-        }
+// Timer
+var seconds = 0;
+var tens = 0;
+var Interval;
+function startTimer () {
+    tens++; 
+    if (tens > 99) {
+        seconds++;
+        tens = 0;
     }
+}
+
+// Handle runner guesses
+function runnerGuess(input) {
+    clearInterval(Interval);
+    if(input === correctAnswer) {
+        runnerStreak++;
+        if(runnerStreak > highscore) {
+            highscore = runnerStreak;
+            localStorage.setItem("runner-highscore", highscore);
+        }
+        document.getElementById("game-output").innerHTML = "Correct! It was " + correctName + "'s run.";
+        document.getElementById("endgame-container").style.borderColor = "darkgreen";
+    } else {
+        runnerStreak == 0;
+        document.getElementById("game-output").innerHTML = "Incorrect. It was actually " + correctName + "'s run.";
+        document.getElementById("endgame-container").style.borderColor = "darkred";
+    }
+    document.getElementById("gameoutput-1").innerHTML = "This run is rank " + trueRank + " on the leaderboards";
+    document.getElementById("gameoutput-2").innerHTML = "You made this guess in " + seconds + "." + tens + " seconds";
+    document.getElementById("gameoutput-3").innerHTML = "Streak: " + runnerStreak;
+    document.getElementById("gameoutput-4").innerHTML = "High-score streak: " + highscore;
+    document.querySelector(".endgame-container").classList.toggle("hidden");
+}
+
 function runnerGuess1() { var ans = 1; runnerGuess(ans); }
 function runnerGuess2() { var ans = 2; runnerGuess(ans); }
 function runnerGuess3() { var ans = 3; runnerGuess(ans); }
 function runnerGuess4() { var ans = 4; runnerGuess(ans); }
+function playAgain() {
+    document.querySelector(".endgame-container").classList.toggle("hidden");
+    reset();
+}
 
 // Info page stuff
 function openCloseInfo() {
@@ -133,18 +159,18 @@ function changeFilter(filter) {
     if(filter == "all") {
         rankStreak = 0;
         filterMode = 0;
-        document.getElementById("streak-text").innerHTML = "Streak: " + rankStreak;
+        document.getElementById("gameoutput-3").innerHTML = "Streak: " + runnerStreak;
         reset();
     } else if(filter == "sp") {
         rankStreak = 0;
         filterMode = 1;
-        document.getElementById("streak-text").innerHTML = "Streak: " + rankStreak;
+        document.getElementById("gameoutput-3").innerHTML = "Streak: " + runnerStreak;
         reset();
     }
     else if(filter == "coop") {
         rankStreak = 0;
         filterMode = 2;
-        document.getElementById("streak-text").innerHTML = "Streak: " + rankStreak;
+        document.getElementById("gameoutput-3").innerHTML = "Streak: " + runnerStreak;
         reset();
     }
 }

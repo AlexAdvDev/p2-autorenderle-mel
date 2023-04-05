@@ -51,56 +51,70 @@ function reset() {
         var videoPlayer = document.getElementById("videoPlayer");
         videoPlayer.src = apiBase + "/video/" + runID + "/video";
         document.getElementById("rank-guess").value = "";
+
+        // Reset timer
+        clearInterval(Interval);
+        tens = "00";
+        seconds = "00";
+
+        // Start timer
+        clearInterval(Interval);
+        Interval = setInterval(startTimer, 10);
     });
 }
 
 // Start the loop initially
 reset();
-document.getElementById("streak-text").innerHTML = "Streak: 0";
-document.getElementById("highstreak-text").innerHTML = "High-score streak: 0";
 
-// Submitted Guess function
+// Handle Runner Guesses
 var rankStreak = 0;
 var highscore = localStorage.getItem("rank-highscore") || 0;
+
+// Timer
+var seconds = 0;
+var tens = 0;
+var Interval;
+function startTimer () {
+    tens++; 
+    if (tens > 99) {
+        seconds++;
+        tens = 0;
+    }
+}
 
 function rankSubmitGuess() {
     var submitText = document.getElementById("rank-guess");
     // Check if guess is correct by margins
     if(submitText.value == trueRank) {
-        if(confirm("You guessed exactly right!" + " ran by " + boardJson[Object.keys(boardJson)[randomRank]].userData.boardname)) {
-            rankStreak++;
-            if(rankStreak > highscore) {
-                highscore = rankStreak;
-                localStorage.setItem("rank-highscore", highscore);
-                document.getElementById("highstreak-text").innerHTML = "High-score streak: " + highscore;
-            }
-            document.getElementById("streak-text").innerHTML = "Streak: " + rankStreak;
-            reset();
+        rankStreak++;
+        if(rankStreak > highscore) {
+            highscore = rankStreak;
+            localStorage.setItem("runner-highscore", highscore);
         }
+        document.getElementById("game-output").innerHTML = "Exactly right! This run is placed " + trueRank + "!";
+        document.getElementById("endgame-container").style.borderColor = "darkgreen";
     } else if(trueRank - 10 <= submitText.value && submitText.value <= trueRank + 10) {
-        if(confirm("You guessed within 10 ranks! The correct answer was " + trueRank + " ran by " + boardJson[Object.keys(boardJson)[randomRank]].userData.boardname)) {
-            rankStreak++;
-            if(rankStreak > highscore) {
-                highscore = rankStreak;
-                localStorage.setItem("rank-highscore", highscore);
-                document.getElementById("highstreak-text").innerHTML = "High-score streak: " + highscore;
-            }
-            document.getElementById("streak-text").innerHTML = "Streak: " + streak;
-            reset();
+        rankStreak++;
+        if(rankStreak > highscore) {
+            highscore = rankStreak;
+            localStorage.setItem("runner-highscore", highscore);
         }
+        document.getElementById("game-output").innerHTML = "You were within 10! This run is placed " + correctName + "!";
+        document.getElementById("endgame-container").style.borderColor = "gold";
     } else if(trueRank - 20 <= submitText.value && submitText.value <= trueRank + 20) {
-        if(confirm("You guessed within 20 ranks! The correct answer was " + trueRank + " ran by " + boardJson[Object.keys(boardJson)[randomRank]].userData.boardname)) {
-            rankStreak = 0;
-            document.getElementById("streak-text").innerHTML = "Streak: " + rankStreak;
-            reset();
-        }
+        rankStreak = 0;
+        document.getElementById("game-output").innerHTML = "You are within 20 places. This run is placed " + trueRank + ".";
+        document.getElementById("endgame-container").style.borderColor = "darkgoldenrod";
     } else {
-        if(confirm("You guessed wrong! The correct answer was " + trueRank + " ran by " + boardJson[Object.keys(boardJson)[randomRank]].userData.boardname)) {
-            rankStreak = 0;
-            document.getElementById("streak-text").innerHTML = "Streak: " + rankStreak;
-            reset();
-        }
+        rankStreak = 0;
+        document.getElementById("game-output").innerHTML = "Incorrect. This run is placed " + trueRank + ".";
+        document.getElementById("endgame-container").style.borderColor = "darkred";
     }
+    document.getElementById("gameoutput-1").innerHTML = "This run is ran by " + boardJson[Object.keys(boardJson)[randomRank]].userData.boardname;
+    document.getElementById("gameoutput-2").innerHTML = "You made this guess in " + seconds + "." + tens + " seconds";
+    document.getElementById("gameoutput-3").innerHTML = "Streak: " + rankStreak;
+    document.getElementById("gameoutput-4").innerHTML = "High-score streak: " + highscore;
+    document.querySelector(".endgame-container").classList.toggle("hidden");
 }
 
 // Info page stuff
