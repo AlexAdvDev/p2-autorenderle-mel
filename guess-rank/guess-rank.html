@@ -5,8 +5,28 @@
     <title>Guess the Rank</title>
     <link rel="stylesheet" href="guess-rank.css">
 </head>
+<header>
+    <div class="header-left">
+        <img class="icon" src="../common/home-1393-svgrepo-com.svg" alt="Home" onclick="window.location.href='../index.html'">
+    </div>
+    <div class="header-center">
+        <h1>Guess The Rank</h1>
+    </div>
+    <div class="header-right">
+        <img class="icon" src="../common/important-message-1448-svgrepo-com.svg" alt="Information" onclick="openCloseInfo()">
+    </div>
+</header>
 <body>
     <div class="app-container">
+        <div class="info-container hidden">
+            <h2>How to Play</h2>
+            <image class="exit" src="../common/cross-small-svgrepo-com.svg" alt="Exit" onclick="openCloseInfo()">
+            <ul>
+                <li>A top 200 autorender for a random map will play</li>
+                <li>Guess the rank of the run as close as you can</li>
+                <li>Streaks are based on guessing within 10 places</li>
+            </ul>
+        </div>
         <div class="game-container">
             <h2 id="streak-text"></h2>
             <h3 id="highstreak-text"></h3>

@@ -95,3 +95,8 @@ function rankSubmitGuess() {
         }
     }
 }
+
+// Info page stuff
+function openCloseInfo() {
+    document.querySelector(".info-container").classList.toggle("hidden");
+}
