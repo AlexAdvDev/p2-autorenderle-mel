@@ -3,13 +3,18 @@
 body {
 	background: #121212;
     color: #ffffff;
+    height: 100vh;
     font-family: 'Barlow', sans-serif;
+
+    display: flex;
+	justify-content: center;
+    align-items: center;
 }
 
-.app-container {
+.game-container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+	justify-content: center;
     align-items: center;
 }
 
@@ -24,6 +29,7 @@ body {
 
 .rank-input-container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     margin-left: auto;

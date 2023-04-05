@@ -12,7 +12,8 @@ var runID = null;
 var trueRank = null;
 var correctAnswer = null;
 var correctName = null;
-$(document).ready(function() {
+
+function reset() {
     // Get the boards JSON
     $.getJSON(boardsBase + "/chamber/" + mapID + "/json", function(data) {
         boardJson = data;
@@ -23,11 +24,9 @@ $(document).ready(function() {
             randomRank = Math.floor(Math.random() * 40);
             trueRank = randomRank +1 ;
             console.log("Rank: " + trueRank);
-
             // Get the run ID from boards api
             runID = boardJson[Object.keys(boardJson)[randomRank]].scoreData.changelogId;
             console.log("Run ID: " + runID);
-
             // Check if the run ID has a valid demo
             if(boardJson[Object.keys(boardJson)[randomRank]].scoreData.hasDemo == 0) {
                 console.error("Run ID has no demo, generating new run ID");
@@ -41,7 +40,6 @@ $(document).ready(function() {
             console.log("Correct answer: " + names[0]);
             correctName = names[0];
             names.shift();
-            
             // Add names of the other top 40 runners, but skip over the name just added
             for (var i = 0; i < 40; i++) {
                 if (i != randomRank) {
@@ -74,21 +72,31 @@ $(document).ready(function() {
         var player = document.getElementById("player");
         player.src = apiBase + "/video/" + runID + "/video";
     });
-});
-
-function runnerGuess(input) {
-console.log("Input: " + input + " | Correct answer: " + correctAnswer);
-    if(input === correctAnswer) {
-        if(confirm("You guessed correct! it was " + correctName + "!")) {
-            window.location.reload();
-        }
-    } else {
-        if(confirm("You guessed wrong! The correct answer was " + correctName + ".")) {
-            window.location.reload();
-        }
-    }
 }
 
+// Start the loop initially
+reset();
+document.getElementById("streak-text").innerHTML = "Streak: 0";
+
+// Handle runner guesses
+var streak = 0;
+function runnerGuess(input) {
+    console.log("Input: " + input + " | Correct answer: " + correctAnswer);
+        if(input === correctAnswer) {
+            if(confirm("You guessed correct! it was " + correctName + "!")) {
+                streak++;
+                console.log("Streak: " + streak);
+                document.getElementById("streak-text").innerHTML = "Streak: " + streak;
+                reset();
+            }
+        } else {
+            if(confirm("You guessed wrong! The correct answer was " + correctName + ".")) {
+                streak = 0;
+                document.getElementById("streak-text").innerHTML = "Streak: " + streak;
+                reset();
+            }
+        }
+    }
 function runnerGuess1() { var ans = 1; runnerGuess(ans); }
 function runnerGuess2() { var ans = 2; runnerGuess(ans); }
 function runnerGuess3() { var ans = 3; runnerGuess(ans); }

@@ -8,9 +8,12 @@
 <body>
     <div class="app-container">
         <div class="game-container">
+            <h2 id="streak-text"></h2>
             <video id="videoPlayer" controls autoplay></video>
             <div class="rank-input-container">
-                <input type="text" class="rank-guess" id="rank-guess" placeholder="Guess run rank...">
+                <h2 class="guessrank-text">Guess the rank (between 1 and 200)</h2>
+                <div class="rank-input">
+                    <input type="text" class="rank-guess" id="rank-guess" placeholder="Guess run rank...">
                 <button class="rank-submit" onclick="rankSubmitGuess()">Submit</button>
             </div>
         </div>
