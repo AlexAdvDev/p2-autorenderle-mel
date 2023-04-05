@@ -4,7 +4,6 @@ const boardsBase = "https://board.portal2.sr";
 // Get a random map ID from maplist.js
 var randomMap = Math.floor(Math.random() * 60) + 1;
 var mapID = mapsJson[randomMap - 1].mapid;
-console.log("Map ID: " + mapID + " (map number " + randomMap + ")");
 
 var boardJson = null;
 var randomRank = null;
@@ -17,16 +16,13 @@ function reset() {
     // Get the boards JSON
     $.getJSON(boardsBase + "/chamber/" + mapID + "/json", function(data) {
         boardJson = data;
-        console.log(boardJson);
     }).then(function() {
         function rankGenerateRunID() {
             // Generate a random rank between 1 and 40 (slightly broken)
             randomRank = Math.floor(Math.random() * 40);
             trueRank = randomRank +1 ;
-            console.log("Rank: " + trueRank);
             // Get the run ID from boards api
             runID = boardJson[Object.keys(boardJson)[randomRank]].scoreData.changelogId;
-            console.log("Run ID: " + runID);
             // Check if the run ID has a valid demo
             if(boardJson[Object.keys(boardJson)[randomRank]].scoreData.hasDemo == 0) {
                 console.error("Run ID has no demo, generating new run ID");
@@ -37,7 +33,6 @@ function reset() {
         function setAnswers() {
             var names = [];
             names.push(boardJson[Object.keys(boardJson)[randomRank]].userData.boardname);
-            console.log("Correct answer: " + names[0]);
             correctName = names[0];
             names.shift();
             // Add names of the other top 40 runners, but skip over the name just added
@@ -46,7 +41,6 @@ function reset() {
                     names.push(boardJson[Object.keys(boardJson)[i]].userData.boardname);
                 }
             }
-            console.log(names);
 
             // Randomly assign the names to buttons
             var answers = document.getElementsByClassName("runner-answer");
@@ -81,11 +75,9 @@ document.getElementById("streak-text").innerHTML = "Streak: 0";
 // Handle runner guesses
 var streak = 0;
 function runnerGuess(input) {
-    console.log("Input: " + input + " | Correct answer: " + correctAnswer);
         if(input === correctAnswer) {
             if(confirm("You guessed correct! it was " + correctName + "!")) {
                 streak++;
-                console.log("Streak: " + streak);
                 document.getElementById("streak-text").innerHTML = "Streak: " + streak;
                 reset();
             }

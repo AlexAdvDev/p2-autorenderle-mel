@@ -4,7 +4,6 @@ const boardsBase = "https://board.portal2.sr";
 // Get a random map ID from maplist.js
 var randomMap = Math.floor(Math.random() * 60) + 1;
 var mapID = mapsJson[randomMap - 1].mapid;
-console.log("Map ID: " + mapID + " (map number " + randomMap + ")");
 
 var boardJson = null;
 var randomRank = null;
@@ -21,11 +20,9 @@ function reset() {
             // Generate a random rank between 1 and 200 (slightly broken)
             randomRank = Math.floor(Math.random() * 200);
             trueRank = randomRank +1 ;
-            console.log("Rank: " + trueRank);
 
             // Get the run ID from boards api
             runID = boardJson[Object.keys(boardJson)[randomRank]].scoreData.changelogId;
-            console.log("Run ID: " + runID);
 
             // Check if the run ID has a valid demo
             if(boardJson[Object.keys(boardJson)[randomRank]].scoreData.hasDemo == 0) {
@@ -52,20 +49,16 @@ document.getElementById("streak-text").innerHTML = "Streak (off by <10): 0";
 var streak = 0;
 function rankSubmitGuess() {
     var submitText = document.getElementById("rank-guess");
-    console.log("Guess: " + submitText);
-    
     // Check if guess is correct by margins
     if(submitText.value == trueRank) {
         if(confirm("You guessed exactly right!" + " ran by " + boardJson[Object.keys(boardJson)[randomRank]].userData.boardname)) {
             streak++;
-            console.log("Streak: " + streak);
             document.getElementById("streak-text").innerHTML = "Streak (off by <10): " + streak;
             reset();
         }
     } else if(trueRank - 10 < submitText.value && submitText.value < trueRank + 10) {
         if(confirm("You guessed within 10 ranks! The correct answer was " + trueRank + " ran by " + boardJson[Object.keys(boardJson)[randomRank]].userData.boardname)) {
             streak++;
-            console.log("Streak: " + streak);
             document.getElementById("streak-text").innerHTML = "Streak (off by <10): " + streak;
             reset();
         }
