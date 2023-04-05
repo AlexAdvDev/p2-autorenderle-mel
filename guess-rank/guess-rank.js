@@ -113,18 +113,18 @@ function changeFilter(filter) {
     if(filter == "all") {
         rankStreak = 0;
         filterMode = 0;
-        document.getElementById("streak-text").innerHTML = "Streak (off by <10): " + rankStreak;
+        document.getElementById("streak-text").innerHTML = "Streak: " + rankStreak;
         reset();
     } else if(filter == "sp") {
         rankStreak = 0;
         filterMode = 1;
-        document.getElementById("streak-text").innerHTML = "Streak (off by <10): " + rankStreak;
+        document.getElementById("streak-text").innerHTML = "Streak: " + rankStreak;
         reset();
     }
     else if(filter == "coop") {
         rankStreak = 0;
         filterMode = 2;
-        document.getElementById("streak-text").innerHTML = "Streak (off by <10): " + rankStreak;
+        document.getElementById("streak-text").innerHTML = "Streak: " + rankStreak;
         reset();
     }
 }

@@ -5,8 +5,37 @@
     <title>Guess the Runner</title>
     <link rel="stylesheet" href="guess-runner.css">
 </head>
+<header>
+    <div class="header-left">
+        <img class="icon" src="../common/home-1393-svgrepo-com.svg" alt="Home" onclick="window.location.href='../index.html'">
+    </div>
+    <div class="header-center">
+        <h1>Guess The Rank</h1>
+    </div>
+    <div class="header-right">
+        <img class="icon" src="../common/important-message-1448-svgrepo-com.svg" alt="Information" onclick="openCloseInfo()">
+    </div>
+</header>
 <body>
     <div class="app-container">
+        <div class="info-container hidden">
+            <h2>How to Play</h2>
+            <image class="exit" src="../common/cross-small-svgrepo-com.svg" alt="Exit" onclick="openCloseInfo()">
+            <ul>
+                <li>A top 40 autorender for a random map will play</li>
+                <li>Guess the user who's run it is from the multiple choice</li>
+            </ul>
+            <div class="filters">
+                <br><h2>Run Filters</h2>
+                <p>Note: Changing this will reset your streak!</p>
+                <input type="radio" name="filter" id="all" value="All Runs" onclick="changeFilter('all')" checked>
+                <label for="all">All Runs</label><br>
+                <input type="radio" name="filter" id="sp" value="Only Singleplayer" onclick="changeFilter('sp')">
+                <label for="sp">Only Singleplayer</label><br>
+                <input type="radio" name="filter" id="coop" value="Only Co-op" onclick="changeFilter('coop')">
+                <label for="coop">Only Co-op</label>
+            </div>
+        </div>
         <div class="game-container">
             <h2 id="streak-text"></h2>
             <h3 id="highstreak-text"></h3>

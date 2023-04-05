@@ -7,12 +7,19 @@ var runID = null;
 var trueRank = null;
 var correctAnswer = null;
 var correctName = null;
+var filterMode = 0;
 
 function reset() {
     // Get a random map ID from maplist.js
-    var randomMap = Math.floor(Math.random() * 108) + 1;
+    if(filterMode == 0) {
+        var randomMap = Math.floor(Math.random() * 108) + 1;
+    } else if(filterMode == 1) {
+        var randomMap = Math.floor(Math.random() * 60) + 1;
+    } else if(filterMode == 2) {
+        var randomMap = Math.floor(Math.random() * 48) + 61;
+    }
     var mapID = mapsJson[randomMap - 1].mapid;
-    
+
     // Get the boards JSON
     $.getJSON(boardsBase + "/chamber/" + mapID + "/json", function(data) {
         boardJson = data;
@@ -115,3 +122,29 @@ function runnerGuess1() { var ans = 1; runnerGuess(ans); }
 function runnerGuess2() { var ans = 2; runnerGuess(ans); }
 function runnerGuess3() { var ans = 3; runnerGuess(ans); }
 function runnerGuess4() { var ans = 4; runnerGuess(ans); }
+
+// Info page stuff
+function openCloseInfo() {
+    document.querySelector(".info-container").classList.toggle("hidden");
+}
+
+// Change filter
+function changeFilter(filter) {
+    if(filter == "all") {
+        rankStreak = 0;
+        filterMode = 0;
+        document.getElementById("streak-text").innerHTML = "Streak: " + rankStreak;
+        reset();
+    } else if(filter == "sp") {
+        rankStreak = 0;
+        filterMode = 1;
+        document.getElementById("streak-text").innerHTML = "Streak: " + rankStreak;
+        reset();
+    }
+    else if(filter == "coop") {
+        rankStreak = 0;
+        filterMode = 2;
+        document.getElementById("streak-text").innerHTML = "Streak: " + rankStreak;
+        reset();
+    }
+}
