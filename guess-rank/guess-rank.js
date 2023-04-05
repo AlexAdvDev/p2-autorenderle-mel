@@ -62,7 +62,7 @@ function rankSubmitGuess() {
             document.getElementById("streak-text").innerHTML = "Streak (off by <10): " + streak;
             reset();
         }
-    } else if(trueRank - 10 < submitText.value && submitText.value < trueRank + 10) {
+    } else if(trueRank - 10 <= submitText.value && submitText.value <= trueRank + 10) {
         if(confirm("You guessed within 10 ranks! The correct answer was " + trueRank + " ran by " + boardJson[Object.keys(boardJson)[randomRank]].userData.boardname)) {
             streak++;
             if(streak > highscore) {
@@ -72,7 +72,7 @@ function rankSubmitGuess() {
             document.getElementById("streak-text").innerHTML = "Streak (off by <10): " + streak;
             reset();
         }
-    } else if(trueRank - 20 < submitText.value && submitText.value < trueRank + 20) {
+    } else if(trueRank - 20 <= submitText.value && submitText.value <= trueRank + 20) {
         if(confirm("You guessed within 20 ranks! The correct answer was " + trueRank + " ran by " + boardJson[Object.keys(boardJson)[randomRank]].userData.boardname)) {
             streak = 0;
             document.getElementById("streak-text").innerHTML = "Streak (off by <10): " + streak;
