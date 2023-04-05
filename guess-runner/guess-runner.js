@@ -10,7 +10,7 @@ var correctName = null;
 
 function reset() {
     // Get a random map ID from maplist.js
-    var randomMap = Math.floor(Math.random() * 60) + 1;
+    var randomMap = Math.floor(Math.random() * 108) + 1;
     var mapID = mapsJson[randomMap - 1].mapid;
     
     // Get the boards JSON
@@ -29,6 +29,13 @@ function reset() {
                 rankGenerateRunID();
             }
             previousRunID = runID;
+
+            // Check and update text if coop
+            if(mapsJson[randomMap - 1].num > 60) {
+                document.getElementById("whorun-text").innerHTML = "Whose POV is this?";
+            } else {
+                document.getElementById("whorun-text").innerHTML = "Whose run is this?";
+            }
             
             // Check if the run ID has a valid demo
             if(boardJson[Object.keys(boardJson)[randomRank]].scoreData.hasDemo == 0) {

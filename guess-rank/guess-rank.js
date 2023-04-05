@@ -8,7 +8,7 @@ var trueRank = null;
 
 function reset() {
     // Get a random map ID from maplist.js
-    var randomMap = Math.floor(Math.random() * 60) + 1;
+    var randomMap = Math.floor(Math.random() * 108) + 1;
     var mapID = mapsJson[randomMap - 1].mapid;
 
     // Get the boards JSON
