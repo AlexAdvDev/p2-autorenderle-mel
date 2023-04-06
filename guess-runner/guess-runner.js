@@ -167,7 +167,7 @@ function playAgain() {
 // Info page stuff
 function openCloseInfo() {
     document.querySelector(".info-container").classList.toggle("hidden");
-    if(document.getElementById("ans1").disabled) {
+    if(document.querySelector(".info-container").classList.contains("hidden")) {
         document.getElementById("ans1").disabled = false;
         document.getElementById("ans2").disabled = false;
         document.getElementById("ans3").disabled = false;

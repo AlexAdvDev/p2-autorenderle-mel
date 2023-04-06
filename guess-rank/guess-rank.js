@@ -60,12 +60,12 @@ function reset() {
         // Start timer
         clearInterval(Interval);
         Interval = setInterval(startTimer, 10);
-    });
 
-    // Set buttons to work again
-    document.getElementById("rank-guess").disabled = false;
-    document.getElementById("rank-submit").disabled = false;
-    document.getElementById("skip").disabled = false;
+        // Set buttons to work again
+        document.getElementById("rank-guess").disabled = false;
+        document.getElementById("rank-submit").disabled = false;
+        document.getElementById("skip").disabled = false;
+    });
 }
 
 // Start the loop initially
@@ -135,7 +135,7 @@ function playAgain() {
 // Info page stuff
 function openCloseInfo() {
     document.querySelector(".info-container").classList.toggle("hidden");
-    if(document.getElementById("rank-guess").disabled) {
+    if(document.querySelector(".info-container").classList.contains("hidden")) {
         document.getElementById("rank-guess").disabled = false;
         document.getElementById("rank-submit").disabled = false;
         document.getElementById("skip").disabled = false;
