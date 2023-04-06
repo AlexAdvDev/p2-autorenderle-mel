@@ -118,6 +118,10 @@ function rankSubmitGuess() {
     document.getElementById("gameoutput-4").innerHTML = "High-score streak: " + highscore;
     document.querySelector(".endgame-container").classList.toggle("hidden");
 }
+function playAgain() {
+    document.querySelector(".endgame-container").classList.toggle("hidden");
+    reset();
+}
 
 // Info page stuff
 function openCloseInfo() {
