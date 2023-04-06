@@ -108,7 +108,7 @@ function rankSubmitGuess() {
             highscore = rankStreak;
             localStorage.setItem("runner-highscore", highscore);
         }
-        document.getElementById("game-output").innerHTML = "You were within 10! This run is placed " + correctName + "!";
+        document.getElementById("game-output").innerHTML = "You were within 10! This run is placed " + trueRank + "!";
         document.getElementById("endgame-container").style.borderColor = "gold";
     } else if(trueRank - 20 <= submitText.value && submitText.value <= trueRank + 20) {
         rankStreak = 0;
