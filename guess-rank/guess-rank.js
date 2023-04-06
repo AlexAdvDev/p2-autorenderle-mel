@@ -105,10 +105,12 @@ function rankSubmitGuess() {
         rankStreak = 0;
         document.getElementById("game-output").innerHTML = "You are within 20 places. This run is placed " + trueRank + ".";
         document.getElementById("endgame-container").style.borderColor = "darkgoldenrod";
+        document.getElementById("gameoutput-3").innerHTML = "Streak: 0";
     } else {
         rankStreak = 0;
         document.getElementById("game-output").innerHTML = "Incorrect. This run is placed " + trueRank + ".";
         document.getElementById("endgame-container").style.borderColor = "darkred";
+        document.getElementById("gameoutput-3").innerHTML = "Streak: 0";
     }
     document.getElementById("gameoutput-1").innerHTML = "This run is ran by " + boardJson[Object.keys(boardJson)[randomRank]].userData.boardname;
     document.getElementById("gameoutput-2").innerHTML = "You made this guess in " + seconds + "." + tens + " seconds";

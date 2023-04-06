@@ -35,6 +35,7 @@ function reset() {
                 console.error("Duplicate run, generating new run ID");
                 rankGenerateRunID();
             }
+
             previousRunID = runID;
 
             // Check and update text if coop
@@ -120,7 +121,7 @@ function startTimer () {
 // Handle runner guesses
 function runnerGuess(input) {
     clearInterval(Interval);
-    if(input === correctAnswer) {
+    if(input == correctAnswer) {
         runnerStreak++;
         if(runnerStreak > highscore) {
             highscore = runnerStreak;
@@ -129,9 +130,10 @@ function runnerGuess(input) {
         document.getElementById("game-output").innerHTML = "Correct! It was " + correctName + "'s run.";
         document.getElementById("endgame-container").style.borderColor = "darkgreen";
     } else {
-        runnerStreak == 0;
+        runnerStreak = 0;
         document.getElementById("game-output").innerHTML = "Incorrect. It was actually " + correctName + "'s run.";
         document.getElementById("endgame-container").style.borderColor = "darkred";
+        console.log("test lol");
     }
     document.getElementById("gameoutput-1").innerHTML = "This run is rank " + trueRank + " on the leaderboards";
     document.getElementById("gameoutput-2").innerHTML = "You made this guess in " + seconds + "." + tens + " seconds";
@@ -159,18 +161,15 @@ function changeFilter(filter) {
     if(filter == "all") {
         rankStreak = 0;
         filterMode = 0;
-        document.getElementById("gameoutput-3").innerHTML = "Streak: " + runnerStreak;
         reset();
     } else if(filter == "sp") {
         rankStreak = 0;
         filterMode = 1;
-        document.getElementById("gameoutput-3").innerHTML = "Streak: " + runnerStreak;
         reset();
     }
     else if(filter == "coop") {
         rankStreak = 0;
         filterMode = 2;
-        document.getElementById("gameoutput-3").innerHTML = "Streak: " + runnerStreak;
         reset();
     }
 }
