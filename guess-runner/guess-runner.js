@@ -96,6 +96,12 @@ function reset() {
         // Start timer
         clearInterval(Interval);
         Interval = setInterval(startTimer, 10);
+
+        // Start buttons working again
+        document.getElementById("ans1").disabled = false;
+        document.getElementById("ans2").disabled = false;
+        document.getElementById("ans3").disabled = false;
+        document.getElementById("ans4").disabled = false;
     });
 }
 
@@ -120,6 +126,11 @@ function startTimer () {
 
 // Handle runner guesses
 function runnerGuess(input) {
+    document.getElementById("ans1").disabled = true;
+    document.getElementById("ans2").disabled = true;
+    document.getElementById("ans3").disabled = true;
+    document.getElementById("ans4").disabled = true;
+
     clearInterval(Interval);
     if(input == correctAnswer) {
         runnerStreak++;
@@ -154,6 +165,17 @@ function playAgain() {
 // Info page stuff
 function openCloseInfo() {
     document.querySelector(".info-container").classList.toggle("hidden");
+    if(document.getElementById("ans1").disabled) {
+        document.getElementById("ans1").disabled = false;
+        document.getElementById("ans2").disabled = false;
+        document.getElementById("ans3").disabled = false;
+        document.getElementById("ans4").disabled = false;
+    } else {
+        document.getElementById("ans1").disabled = true;
+        document.getElementById("ans2").disabled = true;
+        document.getElementById("ans3").disabled = true;
+        document.getElementById("ans4").disabled = true;
+    }
 }
 
 // Change filter
