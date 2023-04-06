@@ -61,6 +61,11 @@ function reset() {
         clearInterval(Interval);
         Interval = setInterval(startTimer, 10);
     });
+
+    // Set buttons to work again
+    document.getElementById("rank-guess").disabled = false;
+    document.getElementById("rank-submit").disabled = false;
+    document.getElementById("skip").disabled = false;
 }
 
 // Start the loop initially
@@ -83,6 +88,10 @@ function startTimer () {
 }
 
 function rankSubmitGuess() {
+    document.getElementById("rank-guess").disabled = true;
+    document.getElementById("rank-submit").disabled = true;
+    document.getElementById("skip").disabled = true;
+
     var submitText = document.getElementById("rank-guess");
     // Check if guess is correct by margins
     if(submitText.value == trueRank) {
@@ -126,6 +135,15 @@ function playAgain() {
 // Info page stuff
 function openCloseInfo() {
     document.querySelector(".info-container").classList.toggle("hidden");
+    if(document.getElementById("rank-guess").disabled) {
+        document.getElementById("rank-guess").disabled = false;
+        document.getElementById("rank-submit").disabled = false;
+        document.getElementById("skip").disabled = false;
+    } else {
+        document.getElementById("rank-guess").disabled = true;
+        document.getElementById("rank-submit").disabled = true;
+        document.getElementById("skip").disabled = true;
+    }
 }
 
 // Change filter
@@ -145,6 +163,12 @@ function changeFilter(filter) {
         rankStreak = 0;
         filterMode = 2;
         document.getElementById("streak-text").innerHTML = "Streak: " + rankStreak;
+        reset();
+    }
+}
+
+function skip() {
+    if(confirm("Skip this run? (Meant only for broken demos)")) {
         reset();
     }
 }

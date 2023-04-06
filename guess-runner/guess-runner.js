@@ -102,6 +102,7 @@ function reset() {
         document.getElementById("ans2").disabled = false;
         document.getElementById("ans3").disabled = false;
         document.getElementById("ans4").disabled = false;
+        document.getElementById("skip").disabled = false;
     });
 }
 
@@ -130,6 +131,7 @@ function runnerGuess(input) {
     document.getElementById("ans2").disabled = true;
     document.getElementById("ans3").disabled = true;
     document.getElementById("ans4").disabled = true;
+    document.getElementById("skip").disabled = true;
 
     clearInterval(Interval);
     if(input == correctAnswer) {
@@ -170,11 +172,13 @@ function openCloseInfo() {
         document.getElementById("ans2").disabled = false;
         document.getElementById("ans3").disabled = false;
         document.getElementById("ans4").disabled = false;
+        document.getElementById("skip").disabled = false;
     } else {
         document.getElementById("ans1").disabled = true;
         document.getElementById("ans2").disabled = true;
         document.getElementById("ans3").disabled = true;
         document.getElementById("ans4").disabled = true;
+        document.getElementById("skip").disabled = true;
     }
 }
 
@@ -192,6 +196,12 @@ function changeFilter(filter) {
     else if(filter == "coop") {
         rankStreak = 0;
         filterMode = 2;
+        reset();
+    }
+}
+
+function skip() {
+    if(confirm("Skip this run? (Meant only for broken demos)")) {
         reset();
     }
 }
