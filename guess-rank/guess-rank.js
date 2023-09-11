@@ -35,13 +35,12 @@ function reset() {
                 console.error("Duplicate run, generating new run ID");
                 rankGenerateRunID();
             }
-            previousRunID = runID;
-            
             // Check if the run ID has a valid demo
             if(boardJson[Object.keys(boardJson)[randomRank]].scoreData.hasDemo == 0) {
                 console.error("Run ID has no demo, generating new run ID");
                 rankGenerateRunID();
             }
+            previousRunID = runID;
         }
 
         // Generate the run ID
