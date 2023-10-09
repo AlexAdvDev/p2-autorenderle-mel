@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap');
+
+h1 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 900;
+    font-size: 2rem;
+    color: white;
+}
+h2 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: white;
+}
+
+body {
+    height: 100vh;
+
+    background-color: #1F2937;
+
+    display: flex;
+	justify-content: center;
+    align-items: center;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+
+    background-color: #111827;
+
+    line-height: 100%;
+    text-align: center;
+}
+
+#game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#player {
+    width: auto;
+    height: 25em;
+    border-radius: 5px;
+}
+
+#answers-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 0.5em;
+}
+
+@keyframes submit-in {
+    0% {
+        background-color: #1C64F2;
+    }
+    100% {
+        background-color: #1A56DB;
+    }
+}
+@keyframes submit-out {
+    0% {
+        background-color: #1A56DB;
+    }
+    100% {
+        background-color: #1C64F2;
+    }
+}
+
+.runner-answer {
+    background-color: #1C64F2;
+    border: 0px;
+    border-radius: 5px;
+    width: 8em;
+    animation: submit-out 0.1s forwards linear;
+
+    font-family: 'Roboto', sans-serif;
+    color: white;
+    font-size: 2em;
+}
+.runner-answer:hover {
+    animation: submit-in 0.1s forwards linear;
+    cursor: pointer;
+}
