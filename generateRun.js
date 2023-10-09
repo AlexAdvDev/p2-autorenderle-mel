@@ -14,10 +14,8 @@ function reset() {
             boardsJson = data;
             console.log(boardsJson);
 
-            // Generate random rank between 1 and 40
+            // Generate random rank between 1 and 40 and get run ID
             var randomRank = Math.floor(Math.random() * 40);
-
-            // Get the run ID of the random rank from boards API
             runID = boardsJson[Object.keys(boardsJson)[randomRank]].scoreData.changelogId;
             console.log(runID);
 
@@ -50,15 +48,13 @@ function setAnswers(randomRank) {
         nameOptions.splice(Math.floor(Math.random() * nameOptions.length), 1);
     }
 
-    // Add correct name in random position
+    // Add correct name in random position and apply to buttons
     nameOptions.splice(Math.floor(Math.random() * 4), 0, boardsJson[Object.keys(boardsJson)[randomRank]].userData.boardname);
-    console.log(nameOptions);
-
-    // Set button names to the 4 names
     var buttons = document.getElementsByClassName("runner-answer");
     for (var i = 0; i < buttons.length; i++) {
         buttons[i].innerHTML = nameOptions[i];
     }
 }
 
+// Run reset once to start game loop
 reset();
