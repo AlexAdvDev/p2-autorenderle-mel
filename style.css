@@ -19,7 +19,19 @@ h2 {
     font-size: 1.5rem;
     color: white;
 }
+h3 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: white;
+}
 p {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
+    color: white;
+}
+label {
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
     font-size: 1rem;
@@ -89,7 +101,7 @@ body {
 
 #navbar {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 2em;
     list-style: none;
 
@@ -97,6 +109,12 @@ body {
     font-weight: 400;
     font-size: 1em;
     color: white;
+}
+
+.navbar-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #navbar a {
@@ -138,6 +156,9 @@ body {
     float: right;
 }
 #about-popup-x-button {
+    float: right;
+}
+#filters-popup-x-button {
     float: right;
 }
 #endgame-popup-x-button {

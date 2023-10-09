@@ -2,16 +2,31 @@ const autorenderBase = "https://autorender.portal2.sr/api/v1";
 const boardsBase = "https://board.portal2.sr";
 
 var previousRunID;
+var mapFilterMode = 0;
 
 var correctAnswerButton;
 var corectName;
 var correctRank;
 
 function reset() {
-    // Generate random map
-    var randomMap = Math.floor(Math.random() * 108);
+    // Generate random map (based on filter)
+    var randomMap;
+    if(mapFilterMode == 0) {
+        randomMap = Math.floor(Math.random() * 108); // all maps
+    } else if(mapFilterMode == 1) {
+        randomMap = Math.floor(Math.random() * 60); // only sp
+    } else if(mapFilterMode == 2) {
+        randomMap = Math.floor(Math.random() * 48) + 60; // only coop
+    }
     var mapID = mapsObject[randomMap].mapid;
     console.log(mapID);
+
+    // Update text on screen depending on SP or Co-op
+    if(randomMap < 60) {
+        document.getElementById("whose-run").innerHTML = "Whose run is this?";
+    } else {
+        document.getElementById("whose-run").innerHTML = "Whose POV is this?";
+    }
 
     // Get boards API for randomly generated mapID
     fetch(`${boardsBase}/chamber/${mapID}/json`)
