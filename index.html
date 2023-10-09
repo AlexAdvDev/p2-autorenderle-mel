@@ -13,7 +13,7 @@
                 <h1>Autorenderle</h1>
             </div>
             <div id="header-right">
-                <ul id="navbar">
+                <ul class="list" id="navbar">
                     <li><a href="javascript:showDiv('stats-popup')">Statistics</a></li>
                     <li><a href="javascript:showDiv('about-popup')">About</a></li>
                 </ul>
@@ -21,6 +21,18 @@
         </div>
     </div>
     <div id="app-container">
+        <div class="info-popup" id="stats-popup" style="visibility: hidden;">
+            <a href="javascript:hideDiv('stats-popup')"><svg id="stats-popup-x-button" style="fill:white; display: none;" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg></a>
+            <h2>Statistics</h2><br>
+            <ul class="list">
+                <li id="stats-played">Rounds played: XX</li>
+                <li id="stats-won">Rounds won: XX</li>
+                <li id="stats-percentage">Win percentage: XX%</li>
+                <li id="stats-streak">Current streak: XX</li>
+                <li id="stats-max-streak">Maximum streak: XX</li>
+                <li id="stats-avg-time">Average guess time: XX.X seconds</li>
+            </ul>
+        </div>
         <div class="info-popup" id="about-popup" style="visibility: hidden;">
             <a href="javascript:hideDiv('about-popup')"><svg id="about-popup-x-button" style="fill:white; display: none;" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg></a>
             <h2>About Autorenderle</h2><br>
@@ -30,15 +42,26 @@
             <p>After making your guess, you can see statistics such as time and streak.</p><br>
             <p>Autorenderle is inspired by <a href="https://rankdle.com/">Rankdle</a>.</p>
         </div>
+        <div class="info-popup" id="endgame-popup" style="visibility: hidden;">
+            <h2 id="endgame-outcome">Correct! It was Joe Mamamamaam!</h2><br>
+            <ul class="list">
+                <li id="endgame-rank">This is ranked XX on the leaderboards</li>
+                <li id="endgame-time">You've made your guess in XX.X seconds</li>
+                <li id="endgame-streak">Current streak: XX</li><br>
+            </ul>
+            <button id="endgame-play-again" onClick="playAgain()">Play Again</button>
+        </div>
+        <div class="popup-shadow" id="stats-popup-shadow" onClick="hideDiv('stats-popup')" style="display: none;"></div>
         <div class="popup-shadow" id="about-popup-shadow" onClick="hideDiv('about-popup')" style="display: none;"></div>
+        <div class="popup-shadow" id="endgame-popup-shadow" onClick="playAgain()" style="display: none;"></div>
         <div id="game-container">
             <video id="player" controls autoplay></video>
             <h1>Whose run is this?</h1>
             <div id="answers-container">
-                <button class="runner-answer" id="ans1"></button>
-                <button class="runner-answer" id="ans2"></button>
-                <button class="runner-answer" id="ans3"></button>
-                <button class="runner-answer" id="ans4"></button>
+                <button class="runner-answer" onClick="guess(0)"></button>
+                <button class="runner-answer" onClick="guess(1)"></button>
+                <button class="runner-answer" onClick="guess(2)"></button>
+                <button class="runner-answer" onClick="guess(3)"></button>
             </div>
         </div>
     </div>
@@ -47,6 +70,7 @@
     <script src="header.js"></script>
     <script src="utils/mapList.js"></script>
     <script src="generateRun.js"></script>
+    <script src="handleGuesses.js"></script>
 </body>
 
 </html>
