@@ -109,4 +109,4 @@ var mapsJson = [
     {mapid: "48287", mapname: "Crazier Box"}
 ]
 
-var mapsObject = JSON.parse(JSON.stringify(maps));
+var mapsObject = JSON.parse(JSON.stringify(mapsJson));
