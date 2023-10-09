@@ -9,5 +9,7 @@ function mapFilter(input) {
     } else {
         mapFilterMode = 2;
     }
+    existingPlayerStats['Current Streak'] = 0;
+    streak = 0;
     reset();
 }
