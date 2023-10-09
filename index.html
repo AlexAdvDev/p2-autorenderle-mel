@@ -2,33 +2,93 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Portal 2 Autorenderle</title>
-    <link rel="stylesheet" href="index.css">
-
+    <title>Autorenderle</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-<header>
-    <div class="header-left"></div>
-    <div class="header-center">
-        <h1>Portal 2 Autorenderle</h1>
-    </div>
-    <div class="header-right"></div>
-</header>
+
 <body>
-    <h1>Select a Gamemode</h1>
-    <div class="gamemode-buttons">
-        <button class="gamemode-button" onclick="window.location.href='guess-rank/guess-rank.html'">Guess The Rank</button>
-        <button class="gamemode-button" onclick="window.location.href='guess-runner/guess-runner.html'">Guess The Runner</button>
+    <div id="header-container">
+        <div id="inner-header">
+            <div id="header-left">
+                <h1>Autorenderle</h1>
+            </div>
+            <div id="header-right">
+                <ul class="list" id="navbar">
+                    <li class="navbar-item"><a href="javascript:showDiv('about-popup')">About</a></li>
+                    <li class="navbar-item"><a href="javascript:showDiv('stats-popup')">Statistics</a></li>
+                    <li class="navbar-item"><a href="javascript:showDiv('filters-popup')">Filters</a></li>
+                </ul>
+            </div>
+        </div>
     </div>
-    <script src="index.js"></script>
+    <div id="app-container">
+        <div class="info-popup" id="stats-popup" style="visibility: hidden;">
+            <a href="javascript:hideDiv('stats-popup')"><svg id="stats-popup-x-button" style="fill:white; display: none;" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg></a>
+            <h2>Statistics</h2><br>
+            <ul class="list">
+                <li id="stats-played">Rounds played: XX</li>
+                <li id="stats-won">Rounds won: XX</li>
+                <li id="stats-percentage">Win percentage: XX%</li>
+                <li id="stats-streak">Current streak: XX</li>
+                <li id="stats-max-streak">Maximum streak: XX</li>
+                <li id="stats-avg-time">Average guess time: XX.X seconds</li>
+            </ul>
+        </div>
+        <div class="info-popup" id="about-popup" style="visibility: hidden;">
+            <a href="javascript:hideDiv('about-popup')"><svg id="about-popup-x-button" style="fill:white; display: none;" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg></a>
+            <h2>About Autorenderle</h2><br>
+            <p>A game for Portal 2 speedrunners (and enjoyers) made by
+                <a href="https://github.com/jaiocg">Jaio</a>.</p><br>
+            <p>An autorender of a top 40 run is randomly selected, and the goal is to figure out who the runner is.</p><br>
+            <p>After making your guess, you can see statistics such as time and streak.</p><br>
+            <p>Autorenderle is inspired by <a href="https://rankdle.com/">Rankdle</a>.</p>
+        </div>
+        <div class="info-popup" id="filters-popup" style="visibility: hidden;">
+            <a href="javascript:hideDiv('filters-popup')"><svg id="filters-popup-x-button" style="fill:white; display: none;" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg></a>
+            <h2>Game Filters</h2>
+            <p>Filters are used to select which runs are shown in-game. Do note that your streak will be reset when changing filter settings.</p><br><br>
+            <h3>Map Selection</h3>
+            <input type="radio" name="map-filter" id="all" onClick="mapFilter('all')" checked>
+            <label for="all">All maps</label><br>
+            <input type="radio" name="map-filter" id="sp" onClick="mapFilter('sp')">
+            <label for="sp">Singleplayer maps only</label><br>
+            <input type="radio" name="map-filter" id="coop" onClick="mapFilter('coop')">
+            <label for="coop">Co-op maps only</label><br><br>
+        </div>
+        <div class="info-popup" id="endgame-popup" style="visibility: hidden;">
+            <h2 id="endgame-outcome">Correct! It was Joe Mamamamaam!</h2><br>
+            <ul class="list">
+                <li id="endgame-rank">This is ranked XX on the leaderboards</li>
+                <li id="endgame-time">You've made your guess in XX.X seconds</li>
+                <li id="endgame-streak">Current streak: XX</li><br>
+            </ul>
+            <button id="endgame-play-again" onClick="playAgain()">Play Again</button>
+        </div>
+        <div class="popup-shadow" id="stats-popup-shadow" onClick="hideDiv('stats-popup')" style="display: none;"></div>
+        <div class="popup-shadow" id="about-popup-shadow" onClick="hideDiv('about-popup')" style="display: none;"></div>
+        <div class="popup-shadow" id="filters-popup-shadow" onClick="hideDiv('filters-popup')" style="display: none;"></div>
+        <div class="popup-shadow" id="endgame-popup-shadow" onClick="playAgain()" style="display: none;"></div>
+        <div id="game-container">
+            <video id="player" controls autoplay></video>
+            <h1 id="whose-run">Whose run is this?</h1>
+            <div id="answers-container">
+                <button class="runner-answer" onClick="guess(0)"></button>
+                <button class="runner-answer" onClick="guess(1)"></button>
+                <button class="runner-answer" onClick="guess(2)"></button>
+                <button class="runner-answer" onClick="guess(3)"></button>
+            </div>
+
+            <!-- God only hope this button is temporary (code in Filters)-->
+            <button id="broken-demo" onClick="brokenDemo()">Broken Demo</button>
+        </div>
+    </div>
+
+    <!-- Link JS Files -->
+    <script src="header.js"></script>
+    <script src="utils/mapList.js"></script>
+    <script src="generateRun.js"></script>
+    <script src="handleGuesses.js"></script>
+    <script src="filters.js"></script>
 </body>
-<footer>
-    <div class="footer-left">
-        <p>Created by <a href="https://github.com/jaiocg">Jaio</a></p>
-        <p>Source code available <a href="https://github.com/jaiocg/p2-autorenderle">here</a></p>
-    </div>
-    <div class="footer-right">
-        <p>Autorender created by <a href="https://github.com/mlugg">mlugg</a></p>
-        <p>Source code available <a href="https://github.com/p2sr/portal2-cm-autorender">here</a></p>
-    </div>
-</footer>
+
 </html>
