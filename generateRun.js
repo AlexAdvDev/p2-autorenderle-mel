@@ -19,7 +19,6 @@ function reset() {
         randomMap = Math.floor(Math.random() * 48) + 60; // only coop
     }
     var mapID = mapsObject[randomMap].mapid;
-    console.log(mapID);
 
     // Update text on screen depending on SP or Co-op
     if(randomMap < 60) {
@@ -78,17 +77,14 @@ function setAnswers(randomRank) {
             nameOptions.push(boardsJson[Object.keys(boardsJson)[i]].userData.boardname);
         }
     }
-    console.log(nameOptions);
 
     // Remove names randomly until only 3 remain
     while (nameOptions.length > 3) {
         nameOptions.splice(Math.floor(Math.random() * nameOptions.length), 1);
     }
-    console.log(nameOptions);
 
     // Add correct name in random position and apply to buttons
     nameOptions.splice(Math.floor(Math.random() * 4), 0, boardsJson[Object.keys(boardsJson)[randomRank]].userData.boardname);
-    console.log(nameOptions);
     var buttons = document.getElementsByClassName("runner-answer");
     for (var i = 0; i < buttons.length; i++) {
         buttons[i].innerHTML = nameOptions[i];
