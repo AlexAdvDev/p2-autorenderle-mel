@@ -5,19 +5,16 @@ function reset() {
     // Generate random map
     var randomMap = Math.floor(Math.random() * 108);
     var mapID = mapsObject[randomMap].mapid;
-    console.log(mapID);
 
     // Get boards API for randomly generated mapID
     fetch(boardsBase + "/chamber/" + mapID + "/json")
         .then(res => res.json())
         .then(data => {
             boardsJson = data;
-            console.log(boardsJson);
 
             // Generate random rank between 1 and 40 and get run ID
             var randomRank = Math.floor(Math.random() * 40);
             runID = boardsJson[Object.keys(boardsJson)[randomRank]].scoreData.changelogId;
-            console.log(runID);
 
             // Check if the run ID has a valid demo
             if(boardsJson[Object.keys(boardsJson)[randomRank]].scoreData.hasDemo == 0) {
