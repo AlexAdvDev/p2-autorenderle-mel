@@ -1,4 +1,4 @@
-const autorenderBase = "https://autorender.portal2.sr/api/v1";
+const autorenderBase = "https://autorender.nekz.me/api/v1";
 const boardsBase = "https://board.portal2.sr";
 
 var previousRunID;
