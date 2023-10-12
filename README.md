@@ -23,7 +23,12 @@ Includes more detailed statistics about not only your current play session, but 
 
 ### Filters
 
-Filters allow you to change how the game plays. The only available option right now is changing the maps between All Maps, Singleplayer Only, and Co-op Only. More filters can come when requested.
+Filters allow you to change how the game plays. Of course, the current streak is reset when a filter is changed. The current filters are:
+- Map Selection
+    - Switch between singleplayer maps only, co-op maps only, or both
+- Rank Limit
+    - Change the limit for the placed runs to be shown
+    - Top 40 (default), but Top 20, 100, and 200 are also available
 
 ## Community and Development
 
