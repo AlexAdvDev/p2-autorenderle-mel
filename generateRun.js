@@ -3,6 +3,7 @@ const boardsBase = "https://board.portal2.sr";
 
 var previousRunID;
 var mapFilterMode = 0;
+var rankFilterMode = 40;
 
 var correctAnswerButton;
 var corectName;
@@ -33,8 +34,8 @@ function reset() {
         .then(data => {
             boardsJson = data;
 
-            // Generate random rank between 1 and 40 and get run ID
-            var randomRank = Math.floor(Math.random() * 40);
+            // Generate random rank between 1 and whatever the rank filter is set to  and get run ID
+            var randomRank = Math.floor(Math.random() * rankFilterMode);
             correctRank = randomRank + 1;
             runID = boardsJson[Object.keys(boardsJson)[randomRank]].scoreData.changelogId;
             correctName = boardsJson[Object.keys(boardsJson)[randomRank]].userData.boardname;
@@ -59,11 +60,10 @@ function reset() {
             player.src = `${autorenderBase}/video/${runID}/video`;
             //Set player answers
             setAnswers(randomRank);
-            // Reset timer
+            // Reset and start timer
             clearInterval(Interval);
             tens = "00";
             seconds = "00";
-            // Start timer
             clearInterval(Interval);
             Interval = setInterval(startTimer, 10);
         });
