@@ -97,8 +97,7 @@ function setAnswers(randomRank) {
 
 // Broken Demo reset
 function brokenDemo() {
-    console.error(`Broken render ID: ${boardsJson[Object.keys(boardsJson)[randomRank]].scoreData.changelogId}`);
-    if(confirm("Please only use this for broken demos (there's not a way to detect those, sadly). Contact either Rex or Bexc with the run's ID (viewable in Console [F12]) to get the run re-rendered.")) {
+    if(confirm(`Please only use this for broken demos (there's not a way to detect those, sadly). Contact either Rex or Bexc with the run's ID: ${boardsJson[Object.keys(boardsJson)[randomRank]].scoreData.changelogId} to get the run re-rendered.`)) {
         console.error('Broken Demo Reset');
         reset();
     }
