@@ -34,10 +34,3 @@ function rankFilter(input) {
     streak = 0;
     reset();
 }
-
-// Broken Demo reset
-function brokenDemo() {
-    if(confirm("Please only use this for broken demos (there's not a way to detect those, sadly).")) {
-        reset();
-    }
-}

@@ -8,6 +8,7 @@ var rankFilterMode = 40;
 var correctAnswerButton;
 var corectName;
 var correctRank;
+var randomRank;
 
 function reset() {
     // Generate random map (based on filter)
@@ -35,7 +36,7 @@ function reset() {
             boardsJson = data;
 
             // Generate random rank between 1 and whatever the rank filter is set to  and get run ID
-            var randomRank = Math.floor(Math.random() * rankFilterMode);
+            randomRank = Math.floor(Math.random() * rankFilterMode);
             correctRank = randomRank + 1;
             runID = boardsJson[Object.keys(boardsJson)[randomRank]].scoreData.changelogId;
             correctName = boardsJson[Object.keys(boardsJson)[randomRank]].userData.boardname;
@@ -91,6 +92,15 @@ function setAnswers(randomRank) {
         if(nameOptions[i] == boardsJson[Object.keys(boardsJson)[randomRank]].userData.boardname) {
             correctAnswerButton = i;
         }
+    }
+}
+
+// Broken Demo reset
+function brokenDemo() {
+    console.error(`Broken render ID: ${boardsJson[Object.keys(boardsJson)[randomRank]].scoreData.changelogId}`);
+    if(confirm("Please only use this for broken demos (there's not a way to detect those, sadly). Contact either Rex or Bexc with the run's ID (viewable in Console [F12]) to get the run re-rendered.")) {
+        console.error('Broken Demo Reset');
+        reset();
     }
 }
 
