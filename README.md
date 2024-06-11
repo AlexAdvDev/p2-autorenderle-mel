@@ -1,7 +1,9 @@
 # Portal 2 Autorenderle Mel
 
-# This Fork
+## This Fork
 This is a fork of Jaio's repo, just using mel runs instead of base Portal 2 runs.
+
+# Jaio's README
 
 Autorenderle is a game loosely inspired by [Rankdle](https://rankdle.com), where your goal is to guess the person behind a Portal 2 individual level speedrun given only a video.
 
